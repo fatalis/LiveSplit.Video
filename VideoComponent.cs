@@ -57,6 +57,15 @@ namespace LiveSplit.Video
             Settings.txtVideoPath.TextChanged += txtMRL_TextChanged;
             State = state;
             VLC = vlc;
+            try
+            {
+                VLC.playlist.stop();
+            }
+            catch
+            {
+                ErrorCallback(state.Form, null);
+                throw new Exception();
+            }
             //Control.Visible = false;
 
             state.OnReset += state_OnReset;
